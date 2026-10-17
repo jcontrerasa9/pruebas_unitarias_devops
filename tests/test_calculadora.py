@@ -1,4 +1,4 @@
-from src.calculadora import sumar, dividir
+from src.calculadora import sumar, dividir, raiz_cuadrada, minimo
 import pytest
 
 def test_sumar_positivos():
@@ -15,3 +15,12 @@ def test_sumar_positivos():
 def test_dividir_por_cero_lanza_error():
     with pytest.raises(ValueError):
         dividir(10, 0)
+
+def test_raiz_negativa_lanza_error():
+
+     # Arrange 
+     a = -25
+
+     # Act + Assert
+     with pytest.raises(ValueError):
+         raiz_cuadrada(a)
