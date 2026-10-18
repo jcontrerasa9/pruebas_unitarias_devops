@@ -119,3 +119,22 @@ def test_promedio_de_lista_vacia_lanza_error():
     # Act + Assert
     with pytest.raises(ValueError):
         promedio([])
+
+
+def test_dividir_numeros_decimales():
+    # Arrange
+    dividendo = 7.5
+    divisor = 2.5
+
+    # Act
+    resultado = dividir(dividendo, divisor)
+
+    # Assert
+    assert resultado == 3
+
+
+@pytest.mark.parametrize("base, altura", [(-1, 4), (3, -2)])
+def test_rectangulo_rechaza_dimensiones_negativas(base, altura):
+    # Act + Assert
+    with pytest.raises(ValueError):
+        calcular_area_rectangulo(base, altura)
