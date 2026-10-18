@@ -20,10 +20,13 @@ def fibonacci_iterativo(n):
 
     return b
 
-def fibonacci_recursivo(n):
-    """Calcula el n-ésimo número de Fibonacci de forma recursiva."""
+def fibonacci_recursivo(n, memo=None):
+    """Calcula el n-ésimo número de Fibonacci de forma recursiva (con memoización manual)."""
     if n < 0:
         raise ValueError("El índice no puede ser negativo")
+
+    if memo is None:
+        memo = {}
 
     if n == 0:
         return 0
@@ -31,8 +34,13 @@ def fibonacci_recursivo(n):
     if n == 1:
         return 1
 
-    # BUG: No tiene memoización, es muy lento para n grande
-    return fibonacci_recursivo(n - 1) + fibonacci_recursivo(n - 2)
+    if n in memo:               
+        return memo[n]
+
+    resultado = (fibonacci_recursivo(n - 1, memo)
+                 + fibonacci_recursivo(n - 2, memo))
+    memo[n] = resultado                
+    return resultado                   
 
 def fibonacci_serie(n):
     """Genera una serie de Fibonacci hasta el n-ésimo término."""
