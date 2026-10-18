@@ -113,3 +113,9 @@ def test_rectangulo_calcula_area_y_perimetro(
     # Assert
     assert area == area_esperada
     assert perimetro == perimetro_esperado
+
+
+def test_promedio_de_lista_vacia_lanza_error():
+    # Act + Assert
+    with pytest.raises(ValueError):
+        promedio([])
