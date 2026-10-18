@@ -24,3 +24,14 @@ def test_raiz_negativa_lanza_error():
      # Act + Assert
      with pytest.raises(ValueError):
          raiz_cuadrada(a)
+
+def test_encontrar_minimo():
+
+    # Arrange
+    array = [3, 4, 2, 12, 7]
+
+    # Act 
+    resultado = minimo(array)
+
+    # Assert
+    assert resultado == 1
