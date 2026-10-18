@@ -22,6 +22,18 @@ def test_aplicar_descuento():
     assert resultado == 170
 
 
+@pytest.mark.parametrize(
+    "porcentaje, resultado_esperado",
+    [(0, 100), (100, 0)],
+)
+def test_aplicar_descuento_en_porcentajes_limite(porcentaje, resultado_esperado):
+    # Act
+    resultado = aplicar_descuento(100, porcentaje)
+
+    # Assert
+    assert resultado == resultado_esperado
+
+
 @pytest.mark.parametrize("precio, porcentaje", [(-1, 10), (100, -1), (100, 101)])
 def test_aplicar_descuento_rechaza_valores_invalidos(precio, porcentaje):
     # Act + Assert
@@ -71,6 +83,20 @@ def test_calcular_precio_final_rechaza_valores_invalidos(
     # Act + Assert
     with pytest.raises(ValueError):
         calcular_precio_final(precio, impuesto, descuento)
+
+
+@pytest.mark.parametrize(
+    "cantidad, precio_unitario, resultado_esperado",
+    [(1, 20, 20), (10, 20, 190), (20, 20, 360), (50, 20, 850), (100, 20, 1600)],
+)
+def test_descuento_por_volumen_aplica_todos_los_limites(
+    cantidad, precio_unitario, resultado_esperado
+):
+    # Act
+    resultado = descuento_por_volumen(cantidad, precio_unitario)
+
+    # Assert
+    assert resultado == pytest.approx(resultado_esperado)
 
 
 @pytest.mark.parametrize("cantidad, precio_unitario", [(-1, 10), (10, -1)])
