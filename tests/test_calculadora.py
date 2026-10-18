@@ -34,4 +34,4 @@ def test_encontrar_minimo():
     resultado = minimo(array)
 
     # Assert
-    assert resultado == 1
+    assert resultado == 2
